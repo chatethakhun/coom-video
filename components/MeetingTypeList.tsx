@@ -53,11 +53,9 @@ const MeetingTypeList = () => {
 
       setCallDetails(call);
 
-      console.log(values);
-
-      // if (!values.description) {
-      //   router.push(`/meeting/${id}`);
-      // }
+      if (!values.description) {
+        router.push(`/meeting/${id}`);
+      }
 
       toast({
         title: "Meeting created",
