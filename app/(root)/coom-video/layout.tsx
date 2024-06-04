@@ -1,7 +1,8 @@
+"use client";
 import StreamClientProvider from "@/providers/StreamClientProvider";
-import React from "react";
+import React, { useEffect } from "react";
 
-export default function RootLayout({
+export default function CoomLayout({
   children,
 }: {
   children: React.ReactNode;

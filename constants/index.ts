@@ -34,3 +34,5 @@ export const avatarImages = [
   "/images/avatar-4.png",
   "/images/avatar-5.png",
 ];
+
+export const listApp = ["coom-video", "coom-chat"];
