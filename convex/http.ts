@@ -1,10 +1,9 @@
 import { httpRouter } from "convex/server";
-import { handler } from "tailwindcss-animate";
 import { httpAction } from "./_generated/server";
-import { WebhookEvent } from "@clerk/nextjs/dist/types/server";
 import { Webhook } from "svix";
 import { WEBHOOK_PAYLOAD } from "@/constants";
 import { internal } from "./_generated/api";
+import { UserJSON, WebhookEvent } from "@clerk/nextjs/server";
 
 const http = httpRouter();
 
@@ -43,7 +42,7 @@ const handleClerkWebhook = httpAction(async (ctx, req) => {
   switch (event.type) {
     case WEBHOOK_PAYLOAD.USER_CREATED: {
       const user = await ctx.runQuery(internal.user.get, {
-        clerkId: event.data.id,
+        clerkId: event.data.id!,
       });
       if (user) {
         console.log(`updating user ${event.data.id} with ${event.data}`);
@@ -52,12 +51,13 @@ const handleClerkWebhook = httpAction(async (ctx, req) => {
 
     case WEBHOOK_PAYLOAD.USER_UPDATED: {
       console.log(`Update/Create event ${event.data.id}`);
-      const { first_name, last_name, image_url } = event.data;
+      const { first_name, last_name, image_url, email_addresses, id } =
+        event.data as UserJSON;
       await ctx.runMutation(internal.user.create, {
         username: `${first_name} ${last_name}`,
         imageUrl: image_url,
-        clerkId: event.data.id,
-        email: event.data.email_addresses[0].email_address,
+        clerkId: id,
+        email: email_addresses[0].email_address,
       });
 
       break;
