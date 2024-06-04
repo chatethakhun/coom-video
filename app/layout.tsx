@@ -5,9 +5,9 @@ import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
 import SwitchAppProvider from "@/providers/SwitchAppProvider";
+import ConvexProvider from "@/providers/ConvexProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,26 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ClerkProvider
-        appearance={{
-          layout: {
-            logoImageUrl: "icons/yoom-logo.svg",
-            socialButtonsVariant: "iconButton",
-          },
-          variables: {
-            colorText: "#fff",
-            colorPrimary: "#0e78f9",
-            colorBackground: "#1c1f2e",
-            colorInputBackground: "#252a41",
-            colorInputText: "#fff",
-          },
-        }}
-      >
+      <ConvexProvider>
         <body className={`${inter.className} bg-dark-2`}>
           <SwitchAppProvider>{children}</SwitchAppProvider>
           <Toaster />
         </body>
-      </ClerkProvider>
+      </ConvexProvider>
     </html>
   );
 }

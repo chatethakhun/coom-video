@@ -36,3 +36,9 @@ export const avatarImages = [
 ];
 
 export const listApp = ["coom-video", "coom-chat"];
+
+export const WEBHOOK_PAYLOAD = {
+  USER_CREATED: "user.created",
+  USER_UPDATED: "user.updated",
+  USER_DELETED: "user.deleted",
+};
