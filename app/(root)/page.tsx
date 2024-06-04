@@ -1,21 +1,12 @@
-"use client";
-import { useCurrentApp } from "@/providers/SwitchAppProvider";
-import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import Loader from "@/components/Loader";
+import React from "react";
 
-const MainPage = () => {
-  const router = useRouter();
-  const {
-    action: { changeApp },
-  } = useCurrentApp();
-  useEffect(() => {
-    console.log("MainPage");
-    const pathname = window.location.pathname.split("/")[1];
-
-    if (pathname !== "/") return;
-
-    changeApp("coom-video");
-  }, [changeApp, router]);
+const page = () => {
+  return (
+    <main>
+      <Loader />
+    </main>
+  );
 };
 
-export default MainPage;
+export default page;

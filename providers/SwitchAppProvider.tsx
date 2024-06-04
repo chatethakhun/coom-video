@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 
 interface SwitchAppProps {
   children: React.ReactNode;
@@ -24,6 +24,13 @@ const SwitchAppProvider = ({ children }: SwitchAppProps) => {
   const changeApp = useCallback((app: APP_LIST) => {
     setCurrentApp(app);
     window.location.pathname = `/${app}`;
+  }, []);
+
+  useEffect(() => {
+    const pathname = window.location.pathname.split("/")[1];
+    if (pathname !== "") {
+      setCurrentApp(pathname as APP_LIST);
+    }
   }, []);
 
   const switchApp = {
