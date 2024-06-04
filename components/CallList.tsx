@@ -99,7 +99,7 @@ const CallList = ({ type }: CallListProps) => {
             handleClick={
               type === "recordings"
                 ? () => router.push(`${(call as CallRecording).url}`)
-                : () => router.push(`/meeting/${(call as Call).id}`)
+                : () => router.push(`/coom-video/meeting/${(call as Call).id}`)
             }
             link={
               type === "recordings"

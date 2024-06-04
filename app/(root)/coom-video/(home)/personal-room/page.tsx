@@ -46,7 +46,7 @@ const PersonalRoom = () => {
         });
       }
 
-      router.push("/meeting/" + meetingId + "?personal=true");
+      router.push("/coom-video/meeting/" + meetingId + "?personal=true");
     } catch (error) {
       toast({
         title: "Error Starting Room",
